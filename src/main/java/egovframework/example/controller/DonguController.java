@@ -17,9 +17,14 @@ public class DonguController {
 	DonguService donguService;
 	
 	@RequestMapping(value="main.do")
-	public String main(Model model) throws Exception {
+	public String main()  {
+		return "main";
+	}
+	
+	@RequestMapping(value="list.do")
+	public String list(Model model) throws Exception {
 		List<DonguVO> vo =donguService.selectTest();
 		model.addAttribute("vo", vo);
-		return "main";
+		return "list";
 	}
 }
