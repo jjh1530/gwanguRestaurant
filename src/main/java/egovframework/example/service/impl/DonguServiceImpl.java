@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import egovframework.example.dao.DonguDao;
 import egovframework.example.service.DonguService;
 import egovframework.example.vo.DonguVO;
+import egovframework.example.vo.Search;
 
 @Service
 public class DonguServiceImpl implements DonguService{
@@ -16,8 +17,18 @@ public class DonguServiceImpl implements DonguService{
 	private DonguDao donguDao;
 	
 	@Override
-	public List<DonguVO> selectTest() throws Exception {
-		return donguDao.selectTest();
+	public List<DonguVO> donguList(Search search) throws Exception {
+		return donguDao.donguList(search);
+	}
+	
+	@Override
+	public int getListCnt(Search search) {
+		return donguDao.getListCnt(search);
+	}
+
+	@Override
+	public DonguVO donguDetail(int id) {
+		return donguDao.donguDetail(id);
 	}
 	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,7 @@
 
 <jsp:include page="/WEB-INF/jsp/nav.jsp"></jsp:include>
 <!-- 테이블 -->
-<div class="hero">
+	<div class="hero">
 	<div class="container">
 			<div class="row align-items-center">
 				<div class="col-lg-7">
@@ -59,50 +60,28 @@
      
      <div class="untree_co-section">
        <!-- Bootstrap Dark Table -->
-       <div class="container" >
-       <table> 
-		 	<tr>
-			<th style="padding-right: 10px; width:15%">
-			 <select class="form-control form-cotrol-sm" name="searchType" id="searchType">
-						<option value="resturantName">식당</option>
-						<option value="loadaddress">주소</option>
-						<br/>
-			</select>
-			</th>
-			
-			<th style="padding-right: 10px; width: 15%;">
-				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
-			</th>
-			
-			<th style="text-align:left;">
-				<button class="btn btn-success" name="btnSearch" id="btnSearch" onclick="btnSearch" style="padding: 10px;"  >
-				검색</button>
-			</th>
-			</tr>
-		</table>
-		</div>
-       
        <div class="container">
+       
        <div class="card ">
-         <h5 class="card-header bg-primary text-white">식당 리스트</h5>
+         <h5 class="card-header bg-primary text-white">공지사항</h5>
          <div class="table-responsive text-nowrap">
            <table class="table card-table">
              <thead>
                <tr>
-                 <th>식당</th>
-                 <th>업종</th>
-                 <th>업종명</th>
-                 <th>지번주소</th>
+                 <th>제목</th>
+                 <th>작성자</th>
+                 <th>등록날짜</th>
+                 <th>조회수</th>
                </tr>
              </thead>
              <c:forEach var="list" items="${list }" varStatus="loop">
              <tbody class="table-border-bottom-0">
                <tr>
-                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>${list.resturantName}</strong></td>
-                 <td>${list.restSector }</td>
-                 <td>${list.restSectorName }</td>
-                 <td>${list.address}</td>
-                 <td><button class="btn btn-primary" onclick="location.href='detail.do?id=${list.id}'">상세보기</button></td>
+                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>${list.title}</strong></td>
+                 <td>${list.writer }</td>
+                 <td>${fn:split(list.indate,' ')[0]}</td>
+                 <td>${list.count }</td>
+                 <td><button class="btn btn-primary" onclick="location.href='detail.do?id='">상세보기</button></td>
                </tr>
              </tbody>
             </c:forEach>
@@ -111,38 +90,7 @@
        </div> 
        </div>
        <!--/ Bootstrap Dark Table -->
-       
- 		<!-- 페이징 -->
- 		<div class="container">:
-		<div id="paginationBox" class="text-center">
-			<ul class="pagination" style="justify-content: center; ">
-			
-				<c:if test="${pagination.prev }">
-					<li class="page-item"><a class="page-link" href="#" onclick="fn_prev('${pagination.page }','${pagination.range }', '${pagination.rangeSize }','${pagination.listSize }'
-					,'${search.searchType }', '${search.keyword}')">이전</a>
-				</li></c:if>
-				<c:forEach begin="${pagination.startPage }" end="${pagination.endPage}" var="resturantName">
-					<li class='page-item <c:out value="${pagination.page ==  resturantName ? 'active' : ''}"/> '>
-					<a class="page-link" href="#" onclick="fn_pagination('${resturantName }', '${pagination.range }','${paginationf.rangeSize }',
-						'${pagination.listSize }','${search.searchType}','${search.keyword }')">
-						${resturantName}</a></li>
-				</c:forEach>	
-				
-				<c:if test="${pagination.next }">
-					<li class="page-item"><a class="page-link" href="#" onclick="fn_next('${pagination.page }','${pagination.range }', '${pagination.rangeSize }',
-						'${pagination.listSize }','${search.searchType }', '${search.keyword}')">다음</a>
-					</li>
-				</c:if>
-			
-			</ul>
-		</div> 
-		</div>
-		<!-- 페이징 종료 -->
-       	
      </div>
-     
-     
-     
      
      <div class="site-footer">
 		<div class="inner first">
@@ -192,51 +140,6 @@
 	<script src="js/custom.js"></script>
 	</body>
 	
-	<script>
-function fn_prev(page, range, rangeSize, listSize, searchType, keyword) {
-	
-	var page = ((range - 2) * rangeSize) + 1;
-	var range = range - 1;
-	var url = "/list.do";
-	url += "?page=" + page;
-	url += "&range=" + range;
-	url += "&listSize=" + listSize;
-	url += "&searchType=" + searchType;
-	url += "&keyword=" + keyword;
-	location.href= url;
-}
-
-function fn_pagination(page, range, rangeSize, listSize, searchType, keyword) {
-	var url = "/list.do";
-		url += "?page=" + page;
-		url += "&range=" + range;
-		url += "&listSize=" + listSize;
-		url += "&searchType=" + searchType;
-		url += "&keyword=" + keyword;
-		location.href= url;
-}
-
-function fn_next(page, range, rangeSize, listSize, searchType, keyword) {
-	
-	var page = parseInt((range * rangeSize)) +1;
-	var range = parseInt(range) +1;
-	var url = "/list.do";
-	url += "?page=" + page;
-	url += "&range=" + range;
-	url += "&listSize=" + listSize;
-	url += "&searchType=" + searchType;
-	url += "&keyword=" + keyword;
-	location.href= url;
-}
-$(document).on('click','#btnSearch',function(e){
-	e.preventDefault();
-	var url = "/list.do";
-	url += "?searchType=" + $('#searchType').val();
-	url += "&keyword=" + $('#keyword').val();
-	location.href = url;
-	console.log(url);
-});
-</script>
 
 	
 	

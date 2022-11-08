@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +33,7 @@
 	<nav class="site-nav">
 		<div class="container">
 			<div class="site-navigation">
-				<a href="/main.do" class="logo m-0">광주 동구 <span class="text-primary">.</span></a>
+				<a href="/main.do" class="logo m-0">Gwangju <span class="text-primary">.</span></a>
 
 				<ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
 					<li class="active"><a href="/main.do">Home</a></li>
@@ -55,7 +54,7 @@
 						</ul>
 					</li>
 					<li><a href="/list.do">식당 리스트</a></li>
-					<li><a href="about.html">About</a></li>
+					<li><a href="/notice.do">공지사항</a></li>
 					<li><a href="contact.html">Contact Us</a></li>
 				</ul>
 

@@ -2,9 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="egovframework.example.service.DonguMapper">
 
-	<select id="selectTest" resultType="donguVO">
+	<select id="donguList" resultType="donguVO">
 		SELECT *
-		FROM dongures LIMIT 10;
+		FROM dongures
+		<where>
+	        <if test="searchType=='resturantName' and keyword != null and keyword != '' ">				
+	            AND resturantName like CONCAT('%', #{keyword}, '%')	
+	        </if>
+	        <if test="searchType=='loadaddress' and keyword != null and keyword != '' ">				
+	            AND loadaddress like CONCAT('%', #{keyword}, '%')			
+	        </if>
+    	</where>
+	    ORDER BY resturantName asc
+	    LIMIT #{startList}, #{listSize}
+		
+	</select>
 
+	<select id="getListCnt" resultType="Integer">
+    SELECT count(*) as listCnt
+    FROM dongures
+    <where>
+        <if test="keyword != null and keyword !=''">
+            <if test="searchType=='resturantName'">
+                AND resturantName like CONCAT('%',#{keyword}, '%')
+            </if>
+            <if test="searchType=='loadaddress' ">
+                AND loadaddress like CONCAT('%',#{keyword}, '%')
+            </if>
+        </if>
+    </where>
+    </select>
+
+	<select id="donguDetail" resultType="donguVO" parameterType="integer">
+		SELECT *
+		FROM dongures
+		WHERE id = #{id}
 	</select>
 </mapper>

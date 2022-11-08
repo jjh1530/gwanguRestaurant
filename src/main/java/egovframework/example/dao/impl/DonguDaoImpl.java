@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import egovframework.example.dao.DonguDao;
 import egovframework.example.service.DonguMapper;
 import egovframework.example.vo.DonguVO;
+import egovframework.example.vo.Search;
 
 @Repository
 public class DonguDaoImpl implements DonguDao{
@@ -17,8 +18,21 @@ public class DonguDaoImpl implements DonguDao{
 	private SqlSession sqlSession;
 
 	@Override
-	public List<DonguVO> selectTest() throws Exception {
+	public List<DonguVO> donguList(Search search) throws Exception {
 		DonguMapper mapper = sqlSession.getMapper(DonguMapper.class);
-		return mapper.selectTest();
+		return mapper.donguList(search);
 	}
+	
+	@Override
+	public int getListCnt(Search search) {
+		DonguMapper mapper = sqlSession.getMapper(DonguMapper.class);
+		return mapper.getListCnt(search);
+	}
+	
+	@Override
+	public DonguVO donguDetail(int id) {
+		DonguMapper mapper = sqlSession.getMapper(DonguMapper.class);
+		return mapper.donguDetail(id);
+	}
+
 }

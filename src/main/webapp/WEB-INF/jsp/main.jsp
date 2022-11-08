@@ -31,9 +31,7 @@
 </head>
 <body>
 
-
-
-<div class="site-mobile-menu site-navbar-target">
+	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
 			<div class="site-mobile-menu-close">
 				<span class="icofont-close js-menu-toggle"></span>
@@ -41,7 +39,7 @@
 		</div>
 		<div class="site-mobile-menu-body"></div>
 	</div>
-	<jsp:include page="/WEB-INF/jsp/nav.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/nav.jsp"></jsp:include>
 				
 			
 
@@ -52,9 +50,7 @@
 			<div class="row align-items-center">
 				<div class="col-lg-7">
 					<div class="intro-wrap">
-						<h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Trip In <span class="typed-words"></span></h1>
-
-					
+						<h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Taste In Gwangju</h1> 
 					</div>
 				</div>
 				<div class="col-lg-5">
@@ -76,7 +72,7 @@
 				<div class="col-lg-7"><h2 class="section-title text-center">Popular Destination</h2></div>
 			</div>
 
-			<div class="owl-carousel owl-3-slider">
+			<div class="owl-carousel owl-4-slider">
 
 				<div class="item">
 					<a class="media-thumb" href="images/hero-slider-1.jpg" data-fancybox="gallery">
@@ -205,49 +201,17 @@
 				<div class="row">
 					<div class="col-md-6 col-lg-4">
 						<div class="widget">
-							<h3 class="heading">About Tour</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</div>
-						<div class="widget">
-							<ul class="list-unstyled social">
-								<li><a href="#"><span class="icon-twitter"></span></a></li>
-								<li><a href="#"><span class="icon-instagram"></span></a></li>
-								<li><a href="#"><span class="icon-facebook"></span></a></li>
-								<li><a href="#"><span class="icon-linkedin"></span></a></li>
-								<li><a href="#"><span class="icon-dribbble"></span></a></li>
-								<li><a href="#"><span class="icon-pinterest"></span></a></li>
-								<li><a href="#"><span class="icon-apple"></span></a></li>
-								<li><a href="#"><span class="icon-google"></span></a></li>
-							</ul>
+							<h3 class="heading">Gwangju Donggu</h3>
+							<p>광주 동구 식당 리스트</p>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-2 pl-lg-5">
-						<div class="widget">
-							<h3 class="heading">Pages</h3>
-							<ul class="links list-unstyled">
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">About</a></li>
-								<li><a href="#">Contact</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-2">
-						<div class="widget">
-							<h3 class="heading">Resources</h3>
-							<ul class="links list-unstyled">
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">About</a></li>
-								<li><a href="#">Contact</a></li>
-							</ul>
-						</div>
-					</div>
+			
 					<div class="col-md-6 col-lg-4">
 						<div class="widget">
 							<h3 class="heading">Contact</h3>
 							<ul class="list-unstyled quick-info links">
-								<li class="email"><a href="#">mail@example.com</a></li>
-								<li class="phone"><a href="#">+1 222 212 3819</a></li>
-								<li class="address"><a href="#">43 Raymouth Rd. Baltemoer, London 3910</a></li>
+								<li class="email">jjh@beftech.co.kr</li>
+								<li class="phone">010-9323-1530</li>
 							</ul>
 						</div>
 					</div>
@@ -299,7 +263,7 @@
 			})
 
 			var typed = new Typed('.typed-words', {
-				strings: ["San Francisco."," Paris."," New Zealand.", " Maui.", " London."],
+				strings: ["Gwangju","."," New", " Maui.", " London."],
 				typeSpeed: 80,
 				backSpeed: 80,
 				backDelay: 4000,
