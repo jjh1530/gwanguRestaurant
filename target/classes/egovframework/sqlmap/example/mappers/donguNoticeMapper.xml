@@ -5,8 +5,44 @@
 	<select id="donguNoticeList" resultType="donguNoticeVO">
 		SELECT *
 		FROM dongguNotice
-		
+		<where>
+	        <if test="searchType=='title' and keyword != null and keyword != '' ">				
+	            AND title like CONCAT('%', #{keyword}, '%')	
+	        </if>
+	        <if test="searchType=='writer' and keyword != null and keyword != '' ">				
+	            AND writer like CONCAT('%', #{keyword}, '%')			
+	        </if>
+    	</where>
+	    ORDER BY idx desc
+	    LIMIT #{startList}, #{listSize}
 	</select>
+	
+	<select id="getNoticeListCnt" resultType="Integer">
+    SELECT count(*) as listCnt
+    FROM dongguNotice
+    <where>
+        <if test="keyword != null and keyword !=''">
+            <if test="searchType=='title'">		
+                AND title like CONCAT('%',#{keyword}, '%')
+            </if>
+            <if test="searchType=='writer' ">
+                AND writer like CONCAT('%',#{keyword}, '%')
+            </if>
+        </if>
+    </where>
+    </select>
+	
+	<select id="donguNoticeDetail" resultType="donguNoticeVO">
+		SELECT *
+		FROM dongguNotice
+		WHERE idx = #{idx}
+	</select>
+	
+	<insert id="donguNoticeWrite" parameterType="donguNoticeVO">
+		INSERT INTO dongguNotice(title, content, writer, noticeimg)
+		VALUES(#{title}, #{content}, #{writer} ,#{noticeimg})
+	</insert>
+	
 	
 	
 </mapper>

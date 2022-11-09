@@ -1,5 +1,7 @@
 package egovframework.example.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class DonguNoticeVO {
 
 	int idx;
@@ -9,6 +11,7 @@ public class DonguNoticeVO {
 	String noticeimg;
 	String indate;
 	int count;
+	private MultipartFile uploadFile;
 	
 	public int getIdx() {
 		return idx;
@@ -52,5 +55,12 @@ public class DonguNoticeVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	
 	
 }

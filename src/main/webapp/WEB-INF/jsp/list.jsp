@@ -50,7 +50,7 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="slides">
-						<img src="images/hero-slider-1.jpg" alt="Image" class="img-fluid active">
+						<img src="images/rest.jpg" alt="Image" class="img-fluid active">
 					</div>
 				</div>
 			</div>
@@ -66,7 +66,6 @@
 			 <select class="form-control form-cotrol-sm" name="searchType" id="searchType">
 						<option value="resturantName">식당</option>
 						<option value="loadaddress">주소</option>
-						<br/>
 			</select>
 			</th>
 			
@@ -113,7 +112,7 @@
        <!--/ Bootstrap Dark Table -->
        
  		<!-- 페이징 -->
- 		<div class="container">:
+ 		<div class="container">
 		<div id="paginationBox" class="text-center">
 			<ul class="pagination" style="justify-content: center; ">
 			
@@ -138,7 +137,6 @@
 		</div> 
 		</div>
 		<!-- 페이징 종료 -->
-       	
      </div>
      
      

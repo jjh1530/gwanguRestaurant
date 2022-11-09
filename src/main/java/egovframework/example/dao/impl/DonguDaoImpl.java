@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import egovframework.example.dao.DonguDao;
 import egovframework.example.service.DonguMapper;
+import egovframework.example.vo.DonguNoticeVO;
 import egovframework.example.vo.DonguVO;
 import egovframework.example.vo.Search;
 
@@ -35,4 +36,9 @@ public class DonguDaoImpl implements DonguDao{
 		return mapper.donguDetail(id);
 	}
 
+	@Override
+	public List<DonguNoticeVO> getNotice() {
+		DonguMapper mapper = sqlSession.getMapper(DonguMapper.class);
+		return mapper.getNotice();
+	}
 }

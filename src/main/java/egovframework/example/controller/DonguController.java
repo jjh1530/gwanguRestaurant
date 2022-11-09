@@ -2,6 +2,8 @@ package egovframework.example.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.example.service.DonguService;
+import egovframework.example.vo.DonguNoticeVO;
 import egovframework.example.vo.DonguVO;
 import egovframework.example.vo.Search;
 
@@ -19,8 +22,13 @@ public class DonguController {
 	@Autowired
 	DonguService donguService;
 	
+	
 	@RequestMapping(value="main.do")
-	public String main()  {
+	public String main(Model model, HttpServletRequest request, DonguNoticeVO vo) throws Exception  {
+		
+		List<DonguNoticeVO> notice = donguService.getNotice();
+		model.addAttribute("notice", notice);
+		System.out.println(vo.getIdx() + vo.getContent() + vo.getCount() + vo.getIndate() + vo.getNoticeimg());
 		return "main";
 	}
 	

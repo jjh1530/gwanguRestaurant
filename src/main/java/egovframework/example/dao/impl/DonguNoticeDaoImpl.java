@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import egovframework.example.dao.DonguNoticeDao;
 import egovframework.example.service.DonguNoticeMapper;
 import egovframework.example.vo.DonguNoticeVO;
+import egovframework.example.vo.Search;
 
 @Repository
 public class DonguNoticeDaoImpl implements DonguNoticeDao{
@@ -17,8 +18,28 @@ public class DonguNoticeDaoImpl implements DonguNoticeDao{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<DonguNoticeVO> donguNoticeList() {
+	public List<DonguNoticeVO> donguNoticeList(Search search) throws Exception {
 		DonguNoticeMapper mapper = sqlSession.getMapper(DonguNoticeMapper.class);
-		return mapper.donguNoticeList();
+		return mapper.donguNoticeList(search);
 	}
+	
+	@Override
+	public int getNoticeListCnt(Search search) throws Exception {
+		DonguNoticeMapper mapper = sqlSession.getMapper(DonguNoticeMapper.class);
+		return mapper.getNoticeListCnt(search);
+	}
+	
+	@Override
+	public DonguNoticeVO donguNoticeDetail(int idx) {
+		DonguNoticeMapper mapper = sqlSession.getMapper(DonguNoticeMapper.class);
+		return mapper.donguNoticeDetail(idx);
+	}
+	
+	@Override
+	public int donguNoticeWrite(DonguNoticeVO vo) {
+		DonguNoticeMapper mapper = sqlSession.getMapper(DonguNoticeMapper.class);
+		return mapper.donguNoticeWrite(vo);
+	}
+	
+	
 }

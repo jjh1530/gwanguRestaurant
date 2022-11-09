@@ -13,7 +13,7 @@
 	            AND loadaddress like CONCAT('%', #{keyword}, '%')			
 	        </if>
     	</where>
-	    ORDER BY resturantName asc
+	    ORDER BY id asc
 	    LIMIT #{startList}, #{listSize}
 		
 	</select>
@@ -23,7 +23,7 @@
     FROM dongures
     <where>
         <if test="keyword != null and keyword !=''">
-            <if test="searchType=='resturantName'">
+            <if test="searchType=='resturantName'">		
                 AND resturantName like CONCAT('%',#{keyword}, '%')
             </if>
             <if test="searchType=='loadaddress' ">
@@ -38,4 +38,11 @@
 		FROM dongures
 		WHERE id = #{id}
 	</select>
+	
+	<select id="getNotice" resultType="donguNoticeVO">
+		SELECT idx, noticeimg
+		FROM dongguNotice
+		ORDER BY idx desc;
+	</select>
+	
 </mapper>

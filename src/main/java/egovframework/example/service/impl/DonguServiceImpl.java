@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import egovframework.example.dao.DonguDao;
 import egovframework.example.service.DonguService;
+import egovframework.example.vo.DonguNoticeVO;
 import egovframework.example.vo.DonguVO;
 import egovframework.example.vo.Search;
 
@@ -30,5 +31,10 @@ public class DonguServiceImpl implements DonguService{
 	public DonguVO donguDetail(int id) {
 		return donguDao.donguDetail(id);
 	}
-	
+
+	@Override
+	public List<DonguNoticeVO> getNotice() {
+		donguDao.getNotice();
+		return donguDao.getNotice();
+	}
 }

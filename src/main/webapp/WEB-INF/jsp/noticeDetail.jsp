@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="css/daterangepicker.css">
 <link rel="stylesheet" href="css/aos.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style2.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -43,65 +43,38 @@
 
 <div class="hero">
 <div class="container">
-<h5 class="card-header bg-primary text-white">식당 정보</h5>
+<div>
+<h5 class="card-header bg-primary text-white">공지사항
+<p style="text-align:right;">${fn:split(vo.indate,' ')[0]}</p>
+<p style="text-align:right;">${vo.writer}</p>
+</h5>
+
+</div>
  <div class="panel-body">
      <div class="bg-light rounded h-100 p-4">
-         <h2 class="mb-4">${vo.resturantName }</h2>
-         <div class="form-floating mb-3">
-         	<label for="floatingPassword">도로명주소</label>
-             <input type="text" class="form-control" id="loadaddress"  readonly="readonly"
-                 value="${vo.loadaddress}">
-         </div>
-  		 <div class="form-floating mb-3">
-  		 	<label for="floatingPassword">지번주소</label>
-             <input type="text" class="form-control" id="address"  readonly="readonly"
-                 value="${vo.address}">
-         </div>
-         <div class="form-floating mb-3">
-         	<label for="floatingPassword">전화번호</label>
-             <input type="text" class="form-control" id="restPhone"  readonly="readonly"
-                 value="${vo.restPhone}">
-         </div>
-         <div class="form-floating mb-3">
-         	<label for="floatingPassword">업종</label>
-             <input type="text" class="form-control" id="restSector"  readonly="readonly"
-                 value="${vo.restSector}">
-         </div>
-         <div class="form-floating mb-3">
-         	<label for="floatingPassword">영업 허가명</label>
-             <input type="text" class="form-control" id="restSectorName"  readonly="readonly"
-                 value="${vo.restSectorName}">
-         </div>
+         <h2 class="mb-4">${vo.title }</h2>
          <div class="form-floating">
          	<label for="floatingTextarea">Comments</label>
-             <textarea class="form-control"
-                 id="floatingTextarea" style="height: 150px;" readonly="readonly"> ${vo.restContent}</textarea>
+               <pre><c:out value="${vo.content}"/></pre>
          </div>
-         <input type="hidden" id="lat" name="lat" value="${vo.lat }"/>
-         <input type="hidden" id="lan" name="lan"value="${vo.lan }"/>
+         <p>
+         <div class="container">
+         <div style="vertical-align: middle;">
+			<img src="<c:out value='file_repo/${vo.noticeimg}'/>"
+			style="width:100%">
+		</div>
+		</div>
      </div>
      
-     
  </div>
  </div>
  </div>
- <div class="untree_co-section">
- <div class="container">
- <div class="row justify-content-between align-items-center">
- 	<div id="staticMap" style="width:100%;height:400px;"></div>
- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=794d3dd52200f67afe9b912443ecd8da">
- </script>
- </div>
-
- </div>
- </div>
- 
- 
-
 	
 	<div class="site-footer">
 		<div class="inner first">
 			<div class="container">
+			
+
 				<div class="row">
 					<div class="col-md-6 col-lg-4">
 						<div class="widget">
@@ -147,23 +120,9 @@
 
 	<script src="js/custom.js"></script>
  
-  <script>
-	var lat = $.trim($("#lat").val());
-	var lan = $.trim($("#lan").val());
-	var markerPosition  = new kakao.maps.LatLng(lat, lan); 
-	var marker = {
-		    position: markerPosition
-		};
-	
-	var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
-    staticMapOption = { 
-        center: new kakao.maps.LatLng(lat, lan), // 이미지 지도의 중심좌표
-        level: 3, // 이미지 지도의 확대 레벨
-        marker: marker // 이미지 지도에 표시할 마커 
-    };    
 
-// 이미지 지도를 생성합니다
-var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
-	</script>
 </body>
+<style>
+
+</style>
 </html>

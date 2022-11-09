@@ -27,7 +27,15 @@ body {
 
 .text-black {
   color: #000000 !important; }
-
+pre{
+	 font-family: "Inter", sans-serif;
+    background-color: #fff;
+    padding:10px;
+    overflow: auto;
+    font-size:18px;
+    white-space: pre-wrap;
+    
+}  
 a {
   color: #1A374D;
   -webkit-transition: .3s all ease;
@@ -575,8 +583,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
     position: relative;
     z-index: 1; }
   .hero .slides {
-    background: #ffffff;
-    max-width: 800px;
+    background: #CFFFE5;
+    max-width: 500px;
     left: -100px;
     z-index: 0;
     position: relative;
@@ -590,6 +598,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
         left: 0; } }
     .hero .slides img {
       position: absolute;
+      max-height:500px;
       border-radius: 200px;
       opacity: 0;
       -webkit-transition: 4s opacity ease;

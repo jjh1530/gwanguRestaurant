@@ -51,14 +51,44 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="slides">
-						<img src="images/hero-slider-1.jpg" alt="Image" class="img-fluid active">
+						<img src="images/rest.jpg" alt="Image" class="img-fluid active">
 					</div>
 				</div>
 			</div>
 		</div>
      </div>
-     
+      
      <div class="untree_co-section">
+     
+     <!-- Bootstrap Dark Table -->
+       <div class="container" >
+       <table> 
+		 	<tr>
+			<th style="padding-right: 10px; width:15%">
+			 <select class="form-control form-cotrol-sm" name="searchType" id="searchType">
+						<option value="title">제목</option>
+						<option value="writer">작성자</option>
+			</select>
+			</th>
+			
+			<th style="padding-right: 10px;width:50%; ">
+				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
+			</th>
+			
+			<th style="text-align:left; width:10%;">
+				<button class="btn btn-success" name="btnSearch" id="btnSearch" onclick="btnSearch" style="padding: 10px;"  >
+				검색</button>
+			</th>
+			<th style="text-align:right; ">
+				<button type="button"  class="btn btn-primary pull-right" onclick="location='noticeWriteForm.do'">글쓰기</button>
+			</th>
+			</tr>
+			
+		</table>
+		</div>
+		
+		<p>
+     
        <!-- Bootstrap Dark Table -->
        <div class="container">
        
@@ -81,7 +111,7 @@
                  <td>${list.writer }</td>
                  <td>${fn:split(list.indate,' ')[0]}</td>
                  <td>${list.count }</td>
-                 <td><button class="btn btn-primary" onclick="location.href='detail.do?id='">상세보기</button></td>
+                 <td><button class="btn btn-primary" onclick="location.href='noticeDetail.do?idx=${list.idx}'">상세보기</button></td>
                </tr>
              </tbody>
             </c:forEach>
@@ -89,7 +119,35 @@
          </div>
        </div> 
        </div>
-       <!--/ Bootstrap Dark Table -->
+       <!-- Bootstrap Dark Table -->
+       
+       <!-- 페이징 -->
+		<div id ="paginationBox" class="text-center">
+			<ul class="pagination" style="justify-content: center; ">
+			
+				<c:if test="${pagination.prev }">
+					<li class="page-item"><a class="page-link" href="#" 
+					onclick="fn_prev('${pagination.page }','${pagination.range }', '${pagination.rangeSize }','${pagination.listSize }'
+					,'${search.searchType }', '${search.keyword}')">이전</a>
+				</c:if>
+				<c:forEach begin="${pagination.startPage }" end="${pagination.endPage}" var="title">
+					<li class="page-item <c:out value="${pagination.page ==  title ? 'active' : ''}"/> ">
+					<a class="page-link" href="#" 
+						onclick="fn_pagination('${title }', '${pagination.range }','${paginationf.rangeSize }',
+						'${pagination.listSize }','${search.searchType}','${search.keyword }')">
+						${title}</a></li>
+				</c:forEach>	
+				
+				<c:if test="${pagination.next }">
+					<li class="page-item"><a class="page-link" href="#" 
+					onclick="fn_next('${pagination.page }','${pagination.range }', '${pagination.rangeSize }',
+						'${pagination.listSize }','${search.searchType }', '${search.keyword}')">다음</a>
+					</li>
+				</c:if>
+			
+			</ul>
+		</div> 
+		<!-- 페이징 종료 -->
      </div>
      
      <div class="site-footer">
@@ -140,7 +198,51 @@
 	<script src="js/custom.js"></script>
 	</body>
 	
+<script>
+function fn_prev(page, range, rangeSize, listSize, searchType, keyword) {
+	
+	var page = ((range - 2) * rangeSize) + 1;
+	var range = range - 1;
+	var url = "/notice.do";
+	url += "?page=" + page;
+	url += "&range=" + range;
+	url += "&listSize=" + listSize;
+	url += "&searchType=" + searchType;
+	url += "&keyword=" + keyword;
+	location.href= url;
+}
 
+function fn_pagination(page, range, rangeSize, listSize, searchType, keyword) {
+	var url = "/notice.do";
+		url += "?page=" + page;
+		url += "&range=" + range;
+		url += "&listSize=" + listSize;
+		url += "&searchType=" + searchType;
+		url += "&keyword=" + keyword;
+		location.href= url;
+}
+
+function fn_next(page, range, rangeSize, listSize, searchType, keyword) {
+	
+	var page = parseInt((range * rangeSize)) +1;
+	var range = parseInt(range) +1;
+	var url = "/notice.do";
+	url += "?page=" + page;
+	url += "&range=" + range;
+	url += "&listSize=" + listSize;
+	url += "&searchType=" + searchType;
+	url += "&keyword=" + keyword;
+	location.href= url;
+}
+$(document).on('click','#btnSearch',function(e){
+	e.preventDefault();
+	var url = "/notice.do";
+	url += "?searchType=" + $('#searchType').val();
+	url += "&keyword=" + $('#keyword').val();
+	location.href = url;
+	console.log(url);
+});
+</script>
 	
 	
 </html>
