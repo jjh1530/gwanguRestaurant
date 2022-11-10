@@ -15,5 +15,7 @@ public interface DonguNoticeDao {
 
 	public int donguNoticeWrite(DonguNoticeVO vo);
 
-	
+	public void noticeDelete(int idx);
+
+	public void noticeUpdate(DonguNoticeVO vo);
 }

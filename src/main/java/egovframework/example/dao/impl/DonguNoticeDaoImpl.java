@@ -41,5 +41,15 @@ public class DonguNoticeDaoImpl implements DonguNoticeDao{
 		return mapper.donguNoticeWrite(vo);
 	}
 	
+	@Override
+	public void noticeDelete(int idx) {
+		DonguNoticeMapper mapper = sqlSession.getMapper(DonguNoticeMapper.class);
+		mapper.noticeDelete(idx);
+	}
 	
+	@Override
+	public void noticeUpdate(DonguNoticeVO vo) {
+		DonguNoticeMapper mapper = sqlSession.getMapper(DonguNoticeMapper.class);
+		mapper.noticeUpdate(vo);
+	}
 }

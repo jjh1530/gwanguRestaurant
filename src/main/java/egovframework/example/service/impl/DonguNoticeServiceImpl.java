@@ -36,4 +36,14 @@ public class DonguNoticeServiceImpl implements DonguNoticeService{
 		return donguNoticeDao.donguNoticeWrite(vo);
 	}
 	
+	@Override
+	public void noticeDelete(int idx) {
+		donguNoticeDao.noticeDelete(idx);
+	}
+	
+	@Override
+	public void noticeUpdate(DonguNoticeVO vo) {
+		donguNoticeDao.noticeUpdate(vo);
+	}
+	
 }

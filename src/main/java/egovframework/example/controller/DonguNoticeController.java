@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.example.service.DonguNoticeService;
 import egovframework.example.vo.DonguNoticeVO;
@@ -86,4 +87,31 @@ public class DonguNoticeController {
 		donguNoticeService.donguNoticeWrite(vo);
 		return "redirect:notice.do";
 	}
+	
+	@RequestMapping(value="noticeDelete")
+	public String noticeDelete(int idx) throws Exception {
+		
+		donguNoticeService.noticeDelete(idx);
+		
+		return "redirect:notice.do";
+	}
+	
+	@RequestMapping(value="noticeUpdateForm.do")
+	public String noticeUpdateForm(int idx, Model model) {
+		
+		DonguNoticeVO nvo = donguNoticeService.donguNoticeDetail(idx);
+		model.addAttribute("vo", nvo);
+		return "noticeUpdateForm";
+	}
+	
+	@RequestMapping(value="noticeUpdate.do")
+	public String noticeUpdate(DonguNoticeVO vo,RedirectAttributes re) throws Exception {
+		
+		re.addAttribute("idx", vo.getIdx());
+		donguNoticeService.noticeUpdate(vo);
+		
+		return "redirect:noticeDetail.do";
+	}
+	
+	
 }

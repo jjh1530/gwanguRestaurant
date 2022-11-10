@@ -45,22 +45,23 @@
 <div class="container">
 <h5 class="card-header bg-primary text-white">공지사항 작성</h5>
     <div class="panel-body">
-     <form id="form1" name="form1" class="form-horizontal" method="post" enctype="multipart/form-data" >
-		  <div class="bg-light rounded h-100 p-4">
+	     <form id="form1" name="form1" class="form-horizontal" method="post" enctype="multipart/form-data" >
+		  <input type="hidden" id="idx" name="idx" value="${vo.idx }">
+		   <div class="bg-light rounded h-100 p-4">
 		   
 		   <div class="form-floating mb-3">
 			    <label for="title">제목</label>
-			      <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
+			      <input type="text" class="form-control" id="title" name="title" value="${vo.title }">
 		   </div>
 		   
 		   <div class="form-floating mb-3">
 		    <label for="content">내용</label>
-		      <textarea  class="form-control" id="content" name="content" placeholder="내용을 입력하세요" rows="10"></textarea>
+		      <textarea  class="form-control" id="content" name="content"  rows="10">${vo.content }</textarea>
 		    </div>
 		    
 		    <label class="control-label col-sm-2" for="writer">작성자</label>
 		    <div class="col-sm-10">
-		     <input type="text" class="form-control" id="writer" name="writer">
+		     <input type="text" class="form-control" id="writer" name="writer" value="${vo.writer }">
 		    </div>
 		    <label class="control-label col-sm-2" for="uploadFile">첨부파일</label>
 				<div class="col-sm-10">
@@ -68,12 +69,14 @@
 						name="uploadFile" >
 				</div>
 		    <div style="text-align:center;">
-	   	   <input type="button" value="등록" id ="btn_add" name="btn_add" class='btn btn-primary' onclick="noticeWrite()"/>
+	   	   <input type="button" value="등록" id ="btn_add" name="btn_add" class='btn btn-primary' onclick="noticeUpdate()"/>
 	       <input type="button" value="리스트"  onclick="location.href='/notice.do'" class='btn btn-success'/>
    			</div>
    			</div>
-    </form>
-    </div>
+	    </form>
+	    </div>
+		  
+		   
     </div>
   </div>
   
@@ -128,13 +131,13 @@
 </body>
 
 <script>
- function noticeWrite(){
+ function noticeUpdate(){
 	 	// form의 데이터 유효성 체크..
 	 	var title = $("#title").val();
 		var content = $("#content").val();
 		var writer = $("#writer").val();
 	 	if(title !="" && content !="" && writer !="" ){
-		 	document.form1.action="<c:url value='/noticeWrite.do'/>"; 
+		 	document.form1.action="<c:url value='/noticeUpdate.do'/>"; 
 		 	document.form1.submit();
 	 	}
 	  }

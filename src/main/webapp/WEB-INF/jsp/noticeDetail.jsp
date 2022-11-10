@@ -64,8 +64,12 @@
 			style="width:100%">
 		</div>
 		</div>
+		<div class="container"  style="text-align:right; ">
+			<br/>			
+			<input type="button" value="수정" onclick="location.href='/noticeUpdateForm.do?idx=${vo.idx }'" class='btn btn-primary'/>
+			<input type="button" value="삭제" onclick="location.href='/noticeDelete.do?idx=${vo.idx }'" class='btn btn-warning'/>
+		</div>
      </div>
-     
  </div>
  </div>
  </div>

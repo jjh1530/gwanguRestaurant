@@ -43,6 +43,15 @@
 		VALUES(#{title}, #{content}, #{writer} ,#{noticeimg})
 	</insert>
 	
+	<delete id="noticeDelete">
+		DELETE FROM dongguNotice WHERE idx = #{idx}
+	</delete>
+	
+	<update id="noticeUpdate" parameterType="donguNoticeVO">
+		UPDATE dongguNotice SET title =#{title}, content =#{content}
+		WHERE idx=#{idx}
+	</update>
+	
 	
 	
 </mapper>
