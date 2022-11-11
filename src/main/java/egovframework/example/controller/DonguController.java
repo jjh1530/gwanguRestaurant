@@ -28,7 +28,6 @@ public class DonguController {
 		
 		List<DonguNoticeVO> notice = donguService.getNotice();
 		model.addAttribute("notice", notice);
-		System.out.println(vo.getIdx() + vo.getContent() + vo.getCount() + vo.getIndate() + vo.getNoticeimg());
 		return "main";
 	}
 	

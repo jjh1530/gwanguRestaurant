@@ -48,7 +48,7 @@
 	</delete>
 	
 	<update id="noticeUpdate" parameterType="donguNoticeVO">
-		UPDATE dongguNotice SET title =#{title}, content =#{content}
+		UPDATE dongguNotice SET title =#{title}, content =#{content}, noticeimg=#{noticeimg}
 		WHERE idx=#{idx}
 	</update>
 	

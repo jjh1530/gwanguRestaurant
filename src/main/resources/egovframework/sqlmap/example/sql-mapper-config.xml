@@ -6,5 +6,6 @@
 		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 		<typeAlias alias="donguVO" type="egovframework.example.vo.DonguVO"/>
 		<typeAlias alias="donguNoticeVO" type="egovframework.example.vo.DonguNoticeVO"/>
+		<typeAlias alias="userVO" type="egovframework.example.vo.UserVO"/>
     </typeAliases>
 </configuration>

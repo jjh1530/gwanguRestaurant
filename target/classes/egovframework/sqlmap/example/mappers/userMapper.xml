@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.service.UserMapper">
+
+	<select id="userLogin" resultType="integer">
+		SELECT count(*) FROM donguUser
+		WHERE userid =#{userid} AND userpass =#{userpass}
+	</select>
+	
+	<select id="user" resultType="userVO">
+		select * from donguUser
+		WHERE BINARY(userid) = #{userid} AND BINARY(userpass) = #{userpass} 
+	</select>
+	
+</mapper>

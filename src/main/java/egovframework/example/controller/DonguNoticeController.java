@@ -73,7 +73,6 @@ public class DonguNoticeController {
 		String filename = null;
 		String uploadPath = request.getServletContext().getRealPath("file_repo");
 		MultipartFile uploadFile = vo.getUploadFile();
-		System.out.println(uploadFile);
 		if (!uploadFile.isEmpty()) {
 			String originalFilename = uploadFile.getOriginalFilename();
 			String ext = FilenameUtils.getExtension(originalFilename);
@@ -105,7 +104,22 @@ public class DonguNoticeController {
 	}
 	
 	@RequestMapping(value="noticeUpdate.do")
-	public String noticeUpdate(DonguNoticeVO vo,RedirectAttributes re) throws Exception {
+	public String noticeUpdate(DonguNoticeVO vo,RedirectAttributes re
+			,HttpServletRequest request) throws Exception {
+		
+		
+		String filename = null;
+		String uploadPath = request.getServletContext().getRealPath("file_repo");
+		MultipartFile uploadFile = vo.getUploadFile();
+		if (!uploadFile.isEmpty()) {
+			String originalFilename = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFilename);
+			UUID uuid = UUID.randomUUID();
+			filename = uuid + "." +ext;
+			uploadFile.transferTo(new File(uploadPath +"/" + filename));
+		}
+		
+		vo.setNoticeimg(filename);
 		
 		re.addAttribute("idx", vo.getIdx());
 		donguNoticeService.noticeUpdate(vo);

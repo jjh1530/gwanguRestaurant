@@ -37,25 +37,21 @@
 
 				<ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
 					<li class="active"><a href="/main.do">Home</a></li>
-					<li class="has-children">
-						<a href="#">Dropdown</a>
-						<ul class="dropdown">
-							<li><a href="elements.html">Elements</a></li>
-							<li><a href="#">Menu One</a></li>
-							<li class="has-children">
-								<a href="#">Menu Two</a>
-								<ul class="dropdown">
-									<li><a href="#">Sub Menu One</a></li>
-									<li><a href="#">Sub Menu Two</a></li>
-									<li><a href="#">Sub Menu Three</a></li>
-								</ul>
-							</li>
-							<li><a href="#">Menu Three</a></li>
-						</ul>
-					</li>
 					<li><a href="/list.do">식당 리스트</a></li>
 					<li><a href="/notice.do">공지사항</a></li>
 					<li><a href="contact.html">Contact Us</a></li>
+					<li class="has-children">
+						<a href="#">회원관리</a>
+						<ul class="dropdown">
+							<c:if test="${userSession == null }">
+							<li><a href="/userRegisterForm.do">회원가입</a></li>
+							</c:if>
+							<c:if test="${userSession != null }">
+							<li><a href="/userLogout.do">로그아웃</a></li>
+							<li><a href="#">회원정보수정</a></li>
+							</c:if>
+						</ul>
+					</li>
 				</ul>
 
 				<a href="#" class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">

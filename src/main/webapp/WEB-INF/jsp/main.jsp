@@ -52,7 +52,30 @@
 					<div class="intro-wrap">
 						<h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Taste In Gwangju </h1> 
 					</div>
+					<c:if test="${userSession==null }">
+					<form id="sign-form">
+		                <ul>
+		                    <li>
+			                    <input type="text" class="form-control" name="userid" id="userid" style="width:65%"
+			                    placeholder="아이디를 입력하세요." onkeyup="javascript:onEnterLogin();" required/>
+		                    	
+		                    </li><p>
+		                    <li>
+		                        <input type="password" class="form-control" name="userpass" id="userpass" style="width:65%" onkeyup="javascript:onEnterLogin();" required placeholder="비밀번호를 입력하세요."/>
+		                    </li><p>
+		                    <li>
+		                        <button type="button" id="btn_submit" name="btn_submit"  style="width:65%;" class="btn btn-success">로그인</button>
+		                    </li>
+		                </ul>
+           			</form>
+           			</c:if>
+           			<c:if test="${userSession!=null }">
+           			<h1 class="mb-5">Hello ${userSession.userid }</h1>
+           			</c:if>
 				</div>
+				
+				
+				
 				<div class="col-lg-5">
 					<div class="slides">
 						<img src="images/rest.jpg" alt="Image" class="img-fluid active">
@@ -62,7 +85,7 @@
 		</div>
 	</div>
 	
-	<div class="untree_co-section">
+	<div class="untree_co-section" style="background: rgba(26, 55, 77, 0.05);">
 		<div class="container">
 			<div class="row text-center justify-content-center mb-5">
 				<div class="col-lg-7"><h2 class="section-title text-center">공지사항</h2></div>
@@ -71,13 +94,10 @@
 			
  			 <c:forEach var="notice" items="${notice }" varStatus="Loop">
 				<div class="item">
-					<a  onclick="location.href='noticeDetail.do?idx=${notice.idx}'">
-						<img src="<c:out value='file_repo/${notice.noticeimg}'/>" alt="Image" >
-					</a> 
-					<p>
-						<p>
-						<button class="btn btn-primary" onclick="location.href='noticeDetail.do?idx=${notice.idx}'">상세보기</button>
-						</p>
+					<img src="<c:out value='file_repo/${notice.noticeimg}'/>" alt="Image" style="height:300px; padding:10px;">
+					<p><p>
+					<button class="btn btn-primary" onclick="location.href='noticeDetail.do?idx=${notice.idx}'">상세보기</button>
+					</p>
 				</div>
 			
 			</c:forEach>
@@ -200,5 +220,53 @@
 
 	<script src="js/typed.js"></script>
 	<script src="js/custom.js"></script>
+	
+<script>
+$(function() {
+	
+	$("#btn_submit").click(function(){
+		var userid = $.trim($("#userid").val());
+		var userpass = $.trim($("#userpass").val());
+		
+		if(userid == "") {
+			alert("아이디를 입력해주세요.");	
+			$("#userid").focuse();
+			return false;
+		}
+		
+		if(userpass == "") {
+			alert("암호를 입력해주세요.");	
+			$("#userpass").focuse();
+			return false;
+		}
+		
+		$.ajax({
+			/* 전송 전 세팅 */
+    		type:"POST",
+    		data: "userid="+userid+ "&userpass=" + userpass,
+    		url:"userLogin.do", //데이터를 보내는 곳
+    		dataType:"text",     // 리턴 타입
+    		
+    		/* 전송 후 세팅  */
+    		success: function(result) {
+    			if(result == "ok") {
+    				alert(userid + "님 로그인 되었습니다.");
+    				location = "main.do";
+    			} else {
+    				alert("아이디 또는 패스워드를 확인해주세요.");
+    			}
+    		},
+    		error: function() {  // 장애발생
+    			alert("오류발생");
+    		}
+    	});	
+	});
+});
+
+function onEnterLogin(){
+
+
+}
+</script>
 </body>
 </html>
