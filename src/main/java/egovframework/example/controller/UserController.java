@@ -53,5 +53,29 @@ public class UserController {
 		return "userRegisterForm";
 	}
 	
+	@RequestMapping(value="registerCheck.do")
+	@ResponseBody
+	public String registerCheck(String userid) throws Exception {
+		String message = "";
+		int result = userService.registerCheck(userid);
+		if (result == 0 ) {
+			message ="ok";
+		}
+		
+		return message;
+	}
+	
+	@RequestMapping(value="userRegister.do")
+	@ResponseBody
+	public String userRegister(UserVO vo) throws Exception {
+		String message = "";
+		int result = userService.register(vo);
+		if (result == 1) {
+			message ="ok";
+		}
+		System.out.println(message);
+		return message;
+	}
+	
 	
 }

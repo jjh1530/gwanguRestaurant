@@ -12,4 +12,13 @@
 		WHERE BINARY(userid) = #{userid} AND BINARY(userpass) = #{userpass} 
 	</select>
 	
+	<insert id="register" parameterType="userVO">
+		INSERT INTO donguUser(userid, userpass, username, userage, useremail)
+		VALUES(#{userid}, #{userpass}, #{username}, #{userage}, #{useremail})
+	</insert>
+	
+	<select id="registerCheck" resultType="integer">
+		SELECT count(*) FROM donguUser
+		WHERE userid =#{userid}
+	</select>
 </mapper>
