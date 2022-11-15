@@ -307,6 +307,8 @@ $(function() {
 function setEmailDomain(domain){
     $("#email_domain").val(domain);
 }
+
+//DatePicker
 $(document).ready(function() {
 	 
     $("#datepicker").datepicker({
