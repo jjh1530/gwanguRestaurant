@@ -90,7 +90,7 @@
  <div class="row justify-content-between align-items-center">
  	<div id="staticMap" style="width:100%;height:400px;"></div>
  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=794d3dd52200f67afe9b912443ecd8da">
- </script>
+ </script>s
  </div>
 
  </div>

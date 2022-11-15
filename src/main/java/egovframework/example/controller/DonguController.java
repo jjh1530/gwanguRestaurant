@@ -67,4 +67,10 @@ public class DonguController {
 		model.addAttribute("vo", vo);
 		return "detail";
 	}
+	
+	@RequestMapping(value="kapi.do")
+	public String kapi() {
+		
+		return "kapi";
+	}
 }

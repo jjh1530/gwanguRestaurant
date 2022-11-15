@@ -48,7 +48,7 @@
 							</c:if>
 							<c:if test="${userSession != null }">
 							<li><a href="/userLogout.do">로그아웃</a></li>
-							<li><a href="#">회원정보수정</a></li>
+							<li><a href="/userDetailForm.do">회원정보수정</a></li>
 							</c:if>
 						</ul>
 					</li>
