@@ -141,7 +141,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <p id="checkMessage" class="card-header bg-primary text-white"></p>
+          <p id="checkMessage" class="card-header bg-defualt"></p>
         </div>
      
       </div>
@@ -194,10 +194,10 @@ function registerCheck() {
 			//중복 유무 체크(result = 1 사용할 수 있는 아이디)
 			if(result =="ok") {
 				$("#checkMessage").html("사용할 수 있는 아이디입니다.");
-				$("#checkType").attr("class","modal-content panel-success")
+				$("#checkType").attr("class","bg-success")
 			}else {
 				$("#checkMessage").html("사용할 수 없는 아이디입니다.");
-				$("#checkType").attr("class","modal-content panel-danger")
+				$("#checkType").attr("class","bg-warning")
 			}
 			$("#registerModal").modal("show");
 		},

@@ -32,4 +32,14 @@ public class UserServiceImpl implements UserService{
 	public int registerCheck(String userid) {
 		return userDao.registerCheck(userid);
 	}
+	
+	@Override
+	public void imageUpdate(UserVO vo) {
+		userDao.imageUpdate(vo);
+	}
+	
+	@Override
+	public void passUpdate(UserVO vo) {
+		userDao.passUpdate(vo);
+	}
 }

@@ -18,7 +18,18 @@
 	</insert>
 	
 	<select id="registerCheck" resultType="integer">
+	/* NOT_SQL_LOG */
 		SELECT count(*) FROM donguUser
 		WHERE userid =#{userid}
 	</select>
+	
+	<update id="imageUpdate" parameterType="userVO">
+		update donguUser set filename=#{filename}
+		WHERE userid = #{userid} and userpass =#{userpass}
+	</update>
+	
+	<update id="passUpdate" parameterType="userVO">
+		UPDATE donguUser SET userpass=#{userpass}
+		WHERE userid=#{userid} AND userpass=#{userpass}
+	</update>
 </mapper>

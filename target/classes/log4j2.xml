@@ -5,22 +5,18 @@
             <PatternLayout pattern="%d %5p [%c] %m%n" />
         </Console>
     </Appenders>
+    
     <Loggers>
-        <Logger name="java.sql" level="INFO" additivity="false">
-            <AppenderRef ref="console" />
-        </Logger>
-        <Logger name="egovframework" level="DEBUG" additivity="false">
-            <AppenderRef ref="console" />
-        </Logger>
-          <!-- log SQL with timing information, post execution -->
-        <Logger name="jdbc.sqltiming" level="INFO" additivity="false">
-            <AppenderRef ref="console" />
-        </Logger>
-        <Logger name="org.springframework" level="INFO" additivity="false">
-            <AppenderRef ref="console" />
-        </Logger>
-        <Root level="INFO">
-            <AppenderRef ref="console" />
+        
+      
+		<Logger name="jdbc.sqlonly" level="DEBUG">
+			<RegexFilter regex="(?s).*NOT_SQL_LOG.*" onMatch="ACCEPT" onMismatch="DENY" useRawMsg="true" />
+		</Logger>
+		
+
+		<Root level="INFO">
+           <AppenderRef ref="console" />
         </Root>
+      
     </Loggers>
 </Configuration>

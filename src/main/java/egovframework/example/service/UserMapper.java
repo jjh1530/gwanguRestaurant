@@ -12,4 +12,8 @@ public interface UserMapper {
 	public int register(UserVO vo);
 
 	public int registerCheck(String userid);
+
+	public void imageUpdate(UserVO vo);
+
+	public void passUpdate(UserVO vo);
 }

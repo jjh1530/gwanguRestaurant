@@ -1,5 +1,7 @@
 package egovframework.example.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UserVO {
 
 	private String userid;
@@ -9,6 +11,8 @@ public class UserVO {
 	private String useremail;
 	private String useryn;
 	private String registerDate;
+	private String filename;
+	private MultipartFile uploadFile;
 	
 	
 	public String getUserid() {
@@ -52,6 +56,18 @@ public class UserVO {
 	}
 	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
 	}
 	
 
