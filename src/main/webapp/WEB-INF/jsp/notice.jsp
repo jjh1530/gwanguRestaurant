@@ -91,7 +91,6 @@
      
        <!-- Bootstrap Dark Table -->
        <div class="container">
-       
        <div class="card ">
          <h5 class="card-header bg-primary text-white">공지사항</h5>
          <div class="table-responsive text-nowrap">

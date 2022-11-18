@@ -18,4 +18,6 @@ public interface DonguNoticeMapper {
 	public void noticeDelete(int idx);
 
 	public void noticeUpdate(DonguNoticeVO vo);
+
+	public int noticeCount(int num);
 }

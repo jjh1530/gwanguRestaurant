@@ -69,17 +69,18 @@
 			</select>
 			</th>
 			
-			<th style="padding-right: 10px; width: 15%;">
+			<th style="padding-right: 10px; width: 50%;">
 				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
 			</th>
 			
-			<th style="text-align:left;">
+			<th style="text-align:left; width:10%;">
 				<button class="btn btn-success" name="btnSearch" id="btnSearch" onclick="btnSearch" style="padding: 10px;"  >
 				검색</button>
 			</th>
 			</tr>
 		</table>
 		</div>
+		<p>
        
        <div class="container">
        <div class="card ">

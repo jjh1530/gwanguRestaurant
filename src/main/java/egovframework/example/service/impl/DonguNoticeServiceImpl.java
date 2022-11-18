@@ -46,4 +46,9 @@ public class DonguNoticeServiceImpl implements DonguNoticeService{
 		donguNoticeDao.noticeUpdate(vo);
 	}
 	
+	@Override
+	public int noticeCount(int num) {
+		return donguNoticeDao.noticeCount(num);
+	}
+	
 }

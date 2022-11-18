@@ -36,11 +36,12 @@ public class UserController {
 		
 		String message = "";
 		int count = userService.userLogin(vo);
-		
+		String userid = vo.getUserid();
 		
 		if (count == 1) {
 			UserVO uvo = userService.user(vo);
 			session.setAttribute("userSession", uvo);
+			session.setAttribute("sessionUserid", userid);
 			session.setMaxInactiveInterval(1800);
 			
 			message = "ok";

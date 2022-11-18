@@ -55,7 +55,7 @@
 		   
 		   <div class="form-floating mb-3">
 		    <label for="content">내용</label>
-		      <textarea  class="form-control" id="content" name="content" placeholder="내용을 입력하세요" rows="10"></textarea>
+		      <textarea  class="form-control" id="content" name="content" placeholder="내용을 입력하세요" rows="30"></textarea>
 		    </div>
 		    
 		    <label class="control-label col-sm-2" for="writer">작성자</label>

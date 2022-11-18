@@ -52,4 +52,10 @@ public class DonguNoticeDaoImpl implements DonguNoticeDao{
 		DonguNoticeMapper mapper = sqlSession.getMapper(DonguNoticeMapper.class);
 		mapper.noticeUpdate(vo);
 	}
+	
+	@Override
+	public int noticeCount(int num) {
+		DonguNoticeMapper mapper = sqlSession.getMapper(DonguNoticeMapper.class);
+		return mapper.noticeCount(num);
+	}
 }

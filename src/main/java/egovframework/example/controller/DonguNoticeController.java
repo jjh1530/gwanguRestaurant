@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +56,17 @@ public class DonguNoticeController {
 	}
 	
 	@RequestMapping(value="noticeDetail.do")
-	public String noticeDetail(Model model,int idx) {
+	public String noticeDetail(Model model,int idx,  HttpSession session) {
 		
 		DonguNoticeVO vo = donguNoticeService.donguNoticeDetail(idx);
 		model.addAttribute("vo", vo);
+		
+		String sessionUserid = (String) session.getAttribute("sessionUserid");
+		String writer = vo.getWriter();
+		int num = vo.getIdx();
+		if (!sessionUserid.equals(writer)) {
+			donguNoticeService.noticeCount(num);
+		}
 		return "noticeDetail";
 	}
 	

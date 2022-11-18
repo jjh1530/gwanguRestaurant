@@ -18,4 +18,6 @@ public interface DonguNoticeDao {
 	public void noticeDelete(int idx);
 
 	public void noticeUpdate(DonguNoticeVO vo);
+
+	public int noticeCount(int num);
 }

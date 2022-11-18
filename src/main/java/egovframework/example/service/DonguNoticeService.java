@@ -19,4 +19,6 @@ public interface DonguNoticeService {
 	
 	public void noticeUpdate(DonguNoticeVO vo);
 	
+	public int noticeCount(int num);
+	
 }
