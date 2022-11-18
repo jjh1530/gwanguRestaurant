@@ -74,6 +74,11 @@ public class DonguVO {
 	public void setRestContent(String restContent) {
 		this.restContent = restContent;
 	}
+
+	/*@Override
+	public String toString() {
+		return  id + " " + resturantName + " " + restPhone + " " + restSector ;
+	}*/
 	
 	
 	

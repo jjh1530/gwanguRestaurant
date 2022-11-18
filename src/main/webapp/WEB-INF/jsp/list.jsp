@@ -86,6 +86,8 @@
        <div class="card ">
          <h5 class="card-header bg-primary text-white">식당 리스트</h5>
          <div class="table-responsive text-nowrap">
+         	<form action="/excelDown.do" method="post">
+         	<input type="submit" value="Excel">
            <table class="table card-table">
              <thead>
                <tr>
@@ -107,6 +109,7 @@
              </tbody>
             </c:forEach>
            </table>
+           </form>
          </div>
        </div> 
        </div>

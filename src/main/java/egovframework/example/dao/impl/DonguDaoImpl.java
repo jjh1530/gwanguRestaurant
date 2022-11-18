@@ -2,6 +2,8 @@ package egovframework.example.dao.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,12 @@ public class DonguDaoImpl implements DonguDao{
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Override
+	public List<DonguVO> donguList2() {
+		DonguMapper mapper = sqlSession.getMapper(DonguMapper.class);
+		return mapper.donguList2();
+	}
 
 	@Override
 	public List<DonguVO> donguList(Search search) throws Exception {
@@ -41,4 +49,5 @@ public class DonguDaoImpl implements DonguDao{
 		DonguMapper mapper = sqlSession.getMapper(DonguMapper.class);
 		return mapper.getNotice();
 	}
+	
 }

@@ -61,6 +61,11 @@ public class DonguNoticeVO {
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
+	/*
+	@Override
+	public String toString() {
+		return idx + " " + title + " " + content + " " + writer + " "+ indate ;
+	}*/
 	
 	
 }
