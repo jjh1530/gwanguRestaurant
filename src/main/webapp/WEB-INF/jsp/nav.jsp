@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<nav class="site-nav">
+	<nav class="site-nav" style="background: #6998AB;">
 		<div class="container">
 			<div class="site-navigation">
 				<a href="/main.do" class="logo m-0">Gwangju <span class="text-primary">.</span></a>

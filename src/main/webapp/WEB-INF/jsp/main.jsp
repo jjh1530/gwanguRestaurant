@@ -93,14 +93,16 @@
 			<div class="owl-carousel owl-4-slider">
 			
  			 <c:forEach var="notice" items="${notice }" varStatus="Loop">
+ 			 <c:if test="${notice.noticeimg != null }">
 				<div class="item">
 					<img src="<c:out value='file_repo/${notice.noticeimg}'/>" alt="Image" style="height:300px; padding:10px;">
 					<p><p>
 					<button class="btn btn-primary" onclick="location.href='noticeDetail.do?idx=${notice.idx}'">상세보기</button>
 					</p>
 				</div>
-			
+			</c:if>
 			</c:forEach>
+			
 			</div>
 
 		</div>

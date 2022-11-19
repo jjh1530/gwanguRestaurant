@@ -45,7 +45,7 @@
 	</select>
 	
 	<select id="getNotice" resultType="donguNoticeVO">
-		SELECT idx, title, content, writer,indate
+		SELECT idx, title, content, writer,indate, noticeimg
 		FROM dongguNotice
 		ORDER BY idx desc;
 	</select>
