@@ -83,13 +83,15 @@ public class DonguController {
 	
 	@RequestMapping(value="excelDown.do")
 	@ResponseBody
-	public void excelDown(Model model, HttpServletResponse response, DonguNoticeVO vo
+	public void excelDown(Model model, HttpServletResponse response, DonguNoticeVO vo , HttpServletRequest request
 			,@RequestParam(required=false,defaultValue="1")int page
 			,@RequestParam(required=false,defaultValue="1")int range
 			,@RequestParam(required=false,defaultValue="resturantName")String searchType
 			,@RequestParam(required=false)String keyword
 			,@ModelAttribute("search")Search search)  throws Exception {
 		
+		String test = request.getParameter("resturantName");
+		System.out.println(test);
 		
 		//검색
 		model.addAttribute("search", search);
@@ -102,9 +104,15 @@ public class DonguController {
 		//검색 후 페이지
 		search.pageInfo(page, range, listCnt);
 		
+		//페이징
+		model.addAttribute("pagination", search);
+		model.addAttribute("keyword", keyword);
 		
 		List<DonguVO> list = donguService.donguList(search);
+		model.addAttribute("list", list);
+		model.addAttribute("listCnt", listCnt);
 		
+		System.out.println("searchType = " +searchType  + "keyword : " + keyword  + "page : " + page + "listCnt : " +listCnt);
 		
 		Workbook wb = new XSSFWorkbook();
         Sheet sheet = wb.createSheet("첫번째 시트");

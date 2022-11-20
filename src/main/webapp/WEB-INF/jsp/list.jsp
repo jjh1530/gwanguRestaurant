@@ -100,7 +100,7 @@
              <c:forEach var="list" items="${list }" varStatus="loop">
              <tbody class="table-border-bottom-0">
                <tr>
-                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>${list.resturantName}</strong></td>
+                 <td id ="resturantName" name="resturantName"><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>${list.resturantName}</strong></td>
                  <td>${list.restSector }</td>
                  <td>${list.restSectorName }</td>
                  <td>${list.address}</td>

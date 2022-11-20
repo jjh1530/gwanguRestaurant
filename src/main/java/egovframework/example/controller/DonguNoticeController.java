@@ -64,9 +64,8 @@ public class DonguNoticeController {
 		String sessionUserid = (String) session.getAttribute("sessionUserid");
 		String writer = vo.getWriter();
 		int num = vo.getIdx();
-		if (!sessionUserid.equals(writer)) {
-			donguNoticeService.noticeCount(num);
-		}
+		System.out.println(sessionUserid + "@@" + writer + "@@" + num);
+		
 		return "noticeDetail";
 	}
 	
