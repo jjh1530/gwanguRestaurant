@@ -75,10 +75,10 @@ public class DonguVO {
 		this.restContent = restContent;
 	}
 
-	/*@Override
+	@Override
 	public String toString() {
 		return  id + " " + resturantName + " " + restPhone + " " + restSector ;
-	}*/
+	}
 	
 	
 	

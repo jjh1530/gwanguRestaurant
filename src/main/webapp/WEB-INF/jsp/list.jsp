@@ -77,17 +77,28 @@
 				<button class="btn btn-success" name="btnSearch" id="btnSearch" onclick="btnSearch" style="padding: 10px;"  >
 				검색</button>
 			</th>
+			<th>
+				<form action="/excelDown.do" method="post" style="width:20%">
+		         	 <c:forEach var="list" items="${list }" varStatus="loop">
+		         		  <input type="hidden" class="form-control" id=resturantName name="resturantName" value=${list.resturantName } />
+			              <input type="hidden" class="form-control" id=address name="address" value=${list.address } />
+			              <input type="hidden" class="form-control" id=restPhone name="restPhone" value=${list.restPhone } />
+			              <input type="hidden" class="form-control" id=restSector name="restSector" value=${list.restSector } />
+		         	 </c:forEach>
+		         	 <input type="submit" class="btn btn-primary" value="Excel">
+		        </form>
+			</th>
 			</tr>
 		</table>
+		
 		</div>
 		<p>
        
        <div class="container">
        <div class="card ">
+       
          <h5 class="card-header bg-primary text-white">식당 리스트</h5>
          <div class="table-responsive text-nowrap">
-         	<form action="/excelDown.do" method="post">
-         	<input type="submit" value="Excel">
            <table class="table card-table">
              <thead>
                <tr>
@@ -100,7 +111,7 @@
              <c:forEach var="list" items="${list }" varStatus="loop">
              <tbody class="table-border-bottom-0">
                <tr>
-                 <td id ="resturantName" name="resturantName"><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>${list.resturantName}</strong></td>
+                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>${list.resturantName}</strong></td>
                  <td>${list.restSector }</td>
                  <td>${list.restSectorName }</td>
                  <td>${list.address}</td>
@@ -109,7 +120,7 @@
              </tbody>
             </c:forEach>
            </table>
-           </form>
+          
          </div>
        </div> 
        </div>

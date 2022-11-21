@@ -82,6 +82,17 @@
 			<th style="text-align:right; ">
 				<button type="button"  class="btn btn-primary pull-right" onclick="location='noticeWriteForm.do'">글쓰기</button>
 			</th>
+			<th>
+			<form action="/excelDown2.do" method="post" style="width:20%">
+		         	 <c:forEach var="list" items="${list }" varStatus="loop">
+		         		  <input type="hidden" class="form-control" id="title" name="title" value=${list.title } />
+			              <input type="hidden" class="form-control" id="writer" name="writer" value=${list.writer } />
+			              <input type="hidden" class="form-control" id="indate" name="indate" value=${list.indate } />
+			              <input type="hidden" class="form-control" id="count" name="count" value=${list.count } />
+		         	 </c:forEach>
+		         	 <input type="submit" class="btn btn-primary" value="Excel">
+	        </form>
+			</th>
 			</tr>
 			
 		</table>
