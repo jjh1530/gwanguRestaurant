@@ -2,18 +2,22 @@ package egovframework.example.controller;
 
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -123,18 +127,57 @@ public class UserController {
 	}
 	
 	
-@RequestMapping(value="/userPassUpdate.do")
-public String userPassUpdate(UserVO vo,RedirectAttributes rttr
-		,HttpSession session) throws Exception {
+	@RequestMapping(value="/userPassUpdate.do")
+	public String userPassUpdate(UserVO vo,RedirectAttributes rttr
+			,HttpSession session) throws Exception {
+		
+		userService.passUpdate(vo);
+		UserVO uvo = userService.user(vo);
+		session.setAttribute("userSession", uvo);
+		session.setMaxInactiveInterval(1800);
+		rttr.addFlashAttribute("msgType","수정");
+		rttr.addFlashAttribute("msg","비밀번호가 변경되었습니다.");
+		
+		return "redirect:/userDetailForm.do";
+	}
 	
-	userService.passUpdate(vo);
-	UserVO uvo = userService.user(vo);
-	session.setAttribute("userSession", uvo);
-	session.setMaxInactiveInterval(1800);
-	rttr.addFlashAttribute("msgType","수정");
-	rttr.addFlashAttribute("msg","비밀번호가 변경되었습니다.");
-	
-	return "redirect:/userDetailForm.do";
-}
 
+	  @RequestMapping(value = "/sendSms.do", method = RequestMethod.POST)
+	     public String sendSms(HttpServletRequest request) throws Exception {
+
+	       String api_key = "NCSLZMWLTLAGUOJF";
+	       String api_secret = "C5FY3RRIOGVJJMC65UNNGVZWMUO9VFDN";
+
+	       Coolsms coolsms = new Coolsms(api_key, api_secret);
+	       
+	       HashMap<String, String> set = new HashMap<String, String>();	    
+	       set.put("to", "01093231530"); // 수신번호
+
+	       set.put("from", "01093231530"); // 발신번호
+	       set.put("text", (String)request.getParameter("text")); // 문자내용
+	       set.put("type", "sms"); // 문자 타입
+
+	       System.out.println(set);
+	     
+	       JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+	       System.out.println();
+
+	       if ((boolean)result.get("status") == true) {
+	         // 메시지 보내기 성공 및 전송결과 출력
+	         System.out.println("성공");
+	         System.out.println(result.get("group_id")); // 그룹아이디
+	         System.out.println(result.get("result_code")); // 결과코드
+	         System.out.println(result.get("result_message")); // 결과 메시지
+	         System.out.println(result.get("success_count")); // 메시지아이디
+	         System.out.println(result.get("error_count")); // 여러개 보낼시 오류난 메시지 수
+	       } else {
+	         // 메시지 보내기 실패
+	         System.out.println("실패");
+	         System.out.println(result.get("code")); // REST API 에러코드
+	         System.out.println(result.get("message")); // 에러메시지
+	       }
+
+	       return "sms/smsapi";
+	     }
+	
 }

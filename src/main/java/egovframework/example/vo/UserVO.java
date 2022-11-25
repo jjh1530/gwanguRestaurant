@@ -12,6 +12,7 @@ public class UserVO {
 	private String useryn;
 	private String registerDate;
 	private String filename;
+	private String userPhone;
 	private MultipartFile uploadFile;
 	
 	
@@ -68,6 +69,12 @@ public class UserVO {
 	}
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
+	}
+	public String getUserPhone() {
+		return userPhone;
+	}
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
 	
 

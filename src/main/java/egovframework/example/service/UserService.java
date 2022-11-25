@@ -15,4 +15,6 @@ public interface UserService {
 	public void imageUpdate(UserVO vo);
 
 	public void passUpdate(UserVO vo);
+
+	public void  certifiedPhoneNumber(String userPhoneNumber, int randomNumber);
 }
