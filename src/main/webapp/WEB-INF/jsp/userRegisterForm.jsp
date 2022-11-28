@@ -90,24 +90,17 @@
 			</select>
 			</td>
 		   </tr>
-		   <tr class="mobileNo">
-			<th>
-				<label for="phone">휴대폰 번호</label>
-			</th>
-			<td>
-				번호입력 <input type="button" id="send" value="전송" /> <!-- 문자보내는 전송버튼 -->
-				<input type="text" id="userPhone" name="userPhone"class="form-control" style="width:80%"/>   <!-- 인증번호 받을사람 휴대폰 번호 -->
-			    
-			</td>
-			<td>
-				 인증번호 :    <input type="text" id="userNum" class="form-control">   <!-- 인증번호 입력창 -->
-			  <input type="button" id="enterBtn" value="확인" >   <!-- 인증번호와 내가 입력창에 입력한 인증번호 비교하는 창 -->
-			  
-			  
-			  <input type="hidden" name="text" id="text">   <!-- 인증번호를 히든으로 저장해서 보낸다 -->
-			</td>
-		  </tr>
-		   
+		    <tr>
+      	    <td style="width:22%; vertical-align: middle;">휴대폰번호</td>
+      	    <td><input id="userPhone" name="userPhone" class="form-control" type="text" placeholder="숫자만 입력하세요" oninput="this.value = this.value.replaceAll(/\D/g, '')"/></td>
+      	  	 <td><button type="button" class="btn btn-primary btn-sm" id ="send">인증</button></td>
+      	  </tr>
+      	  <tr>
+      	    <td style="width:22%; vertical-align: middle;">인증번호 확인</td>
+      	    <td><input id="userNum" name="userNum" class="form-control" type="text" placeholder="인증번호를 입력해주세요." /></td>
+      	  	<td><button type="button" class="btn btn-primary btn-sm" id ="enterBtn">인증</button></td>
+      	  	<td><input type="hidden" id="text" name="text"/></td>
+      	  </tr>
       	  <tr>
       	    <td colspan="3" style="text-align: right;">
       	       <div id="passMessage" style="color:red; text-align:left;"></div>
@@ -255,26 +248,15 @@ $(function() {
 		var userPhone =$("#userPhone").val();
 		var sysNum = $("#text").val(); 
 		var userNum = $("#userNum").val();
+		
 		if(userid == "") {
-			alert("아이디를 입력해주세요." + userage);	
+			alert("아이디를 입력해주세요." + userPhone);	
 			$("#userid").focuse();
 			return false;
 		}
 		if(userpass == "") {
 			alert("암호를 입력해주세요.");	
 			$("#userpass1").focuse();
-			return false;
-		}
-		if (userage == null || userage == "" || userage == 0  ) {
-			alert("나이를 입력하세요");
-			return false;
-		}
-		if (userage < 0 ) {
-			alert("나이는 1세부터 100세까지 가능합니다.");
-			return false;
-		}
-		if (userage > 100 ) {
-			alert("나이는 1세부터 100세까지 가능합니다.");
 			return false;
 		}
 		if(userpass != userpass2) {
@@ -298,16 +280,16 @@ $(function() {
 		      alert("이메일을 형식에 맞게 입력해주세요.");
 		    return false;
 		  }
-		  if(userNum == "" || userNum == null) {
-	 			alert("인증번호를 입력해주세요.")	
-	 			return false;
-	 		}
-         if(userNum.trim() != sysNum.trim()){
+		  if(userPhone == "" || userPhone == null){
+             alert("핸드폰 번호를 입력해주세요. ");
+             return false;
+	      }
+		
+         if(userNum.trim() == ""){
              alert("인증번호를 확인해주세요");
              return false;
           }
-        
-	
+         
 		$.ajax({
 			/* 전송 전 세팅 */
     		type:"POST",
@@ -367,6 +349,7 @@ var count = 0; /* 문자 중복을 막기 위한 인증번호 */
 
 $(document).ready(function() {
       
+	$("#send").click(function() {
       var number = Math.floor(Math.random() * 100000) + 100000;
          if(number>100000){
             number = number - 10000;
@@ -377,7 +360,7 @@ $(document).ready(function() {
       var userPhone = $("#userPhone").val();
       
       if(userPhone == "" || userPhone == null){
-         alert("빈칸이나 공백을 채워주세요");
+     	alert("휴대폰 번호를 입력해주세요.")
       }
       
       else {
@@ -397,7 +380,6 @@ $(document).ready(function() {
                   alert("해당 휴대폰으로 인증번호를 발송했습니다");
                   count++;
                   
-                  alert(count);
                   }
                  /*  error(){
                      
@@ -414,17 +396,24 @@ $(document).ready(function() {
             }
         }   
    })
-   $("#enterBtn").click(function() {   /* 내가 작성한 번호와 인증번호를 비교한다 */
-      var userNum = $("#userNum").val();
-      
-      var sysNum = $("#text").val();         
-      
-      if(userNum == null || userNum == ""){
-         alert("휴대폰으로 발송된 인증번호를 입력해주세요");
-      }     
-     
-   });
- });
+  $("#enterBtn").click(function() {   /* 내가 작성한 번호와 인증번호를 비교한다 */
+       var userNum = $("#userNum").val();
+       
+       var sysNum = $("#text").val();         
+       
+       if(userNum == null || userNum == ""){
+          alert("휴대폰으로 발송된 인증번호를 입력해주세요");
+       }     
+       else{     
+          if(userNum.trim() == sysNum.trim()){
+              alert("인증 완료 되었습니다.");
+           }
+           else {
+              alert("인증번호를 확인해주세요.");
+           }          
+       }
+    });
+  });
 </script>
 </body>
 
