@@ -1,7 +1,12 @@
 package egovframework.example.controller;
 
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -22,6 +27,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import egovframework.example.service.KaKaoService;
 import egovframework.example.service.UserService;
 import egovframework.example.vo.UserVO;
 
@@ -32,6 +42,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	KaKaoService kakaoService;
 	
 	@RequestMapping(value="userLogin.do")
 	@ResponseBody
@@ -54,8 +67,26 @@ public class UserController {
             logger.info("회원가입 아이디 = " + vo.getUserid() + ".");
         }
 		return message;
+		
 	}
 	
+	@RequestMapping(value="/kakaoLogin")
+	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) {
+	    String access_Token = kakaoService.getAccessToken(code);
+        
+        HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
+        System.out.println("login Controller : " + userInfo);
+        
+        //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+        if (userInfo.get("email") != null) {
+            session.setAttribute("userId", userInfo.get("email"));
+            session.setAttribute("access_Token", access_Token);
+        }
+        
+	    return "main";
+	}
+	
+	 
 	@RequestMapping("userLogout.do")
 	public String franchiseLogout(HttpSession session) {
 		

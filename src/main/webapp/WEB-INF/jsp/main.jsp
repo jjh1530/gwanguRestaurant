@@ -66,6 +66,15 @@
 		                    <li>
 		                        <button type="button" id="btn_submit" name="btn_submit"  style="width:65%;" class="btn btn-success">로그인</button>
 		                    </li>
+		                    <li>
+		                    <c:if test="${userId eq null}">
+		                        <button class="btn btn-success" name ="btn_kakao" id="btn_kakao"
+		                        onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=990a8f8549c43383d5f7e1dd1572c6a5&redirect_uri=http://localhost:8087/kakaoLogin.do&response_type=code'">로그인</button>
+		                    </c:if>
+		                    <c:if test="${userId ne null}">
+		                    	카카오로그인`
+		                    </c:if>
+		                    </li>
 		                </ul>
            			</form>
            			</c:if>
@@ -263,12 +272,11 @@ $(function() {
     		}
     	});	
 	});
+	
+	
 });
 
-function onEnterLogin(){
-
-
-}
 </script>
+
 </body>
 </html>
