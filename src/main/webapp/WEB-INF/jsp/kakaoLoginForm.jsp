@@ -50,28 +50,16 @@
 			<div class="row align-items-center">
 				<div class="col-lg-7">
 					<div class="intro-wrap">
-						<h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Taste In Gwangju </h1> 
+						<h1 class="mb-5"><span class="d-block">KaKaoLogin</span> Test </h1> 
 					</div>
-					<c:if test="${userSession==null }">
 					<form id="sign-form">
 		                <ul>
 		                    <li>
-			                    <input type="text" class="form-control" name="userid" id="userid" style="width:65%"
-			                    placeholder="아이디를 입력하세요." onkeyup="javascript:onEnterLogin();" required/>
-		                    	
-		                    </li><p>
-		                    <li>
-		                        <input type="password" class="form-control" name="userpass" id="userpass" style="width:65%" onkeyup="javascript:onEnterLogin();" required placeholder="비밀번호를 입력하세요."/>
-		                    </li><p>
-		                    <li>
-		                        <button type="button" id="btn_submit" name="btn_submit"  style="width:65%;" class="btn btn-success">로그인</button>
+		                    <button class="btn btn-success" name ="btn_kakao" id="btn_kakao"  type="button"
+		                        onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=990a8f8549c43383d5f7e1dd1572c6a5&redirect_uri=http://localhost:8087/kakaoLogin.do&response_type=code'">로그인</button> 
 		                    </li>
 		                </ul>
            			</form>
-           			</c:if>
-           			<c:if test="${userSession!=null }">
-           			<h1 class="mb-5">Hello ${userSession.userid }</h1>
-           			</c:if>
 				</div>
 				
 				
@@ -85,83 +73,10 @@
 		</div>
 	</div>
 	
-	<div class="untree_co-section" style="background: rgba(26, 55, 77, 0.05);">
-		<div class="container">
-			<div class="row text-center justify-content-center mb-5">
-				<div class="col-lg-7"><h2 class="section-title text-center">공지사항</h2></div>
-			</div>
-			<div class="owl-carousel owl-4-slider">
-			
- 			 <c:forEach var="notice" items="${notice }" varStatus="Loop">
- 			 <c:if test="${notice.noticeimg != null }">
-				<div class="item">
-					<img src="<c:out value='file_repo/${notice.noticeimg}'/>" alt="Image" style="height:300px; padding:10px;">
-					<p><p>
-					<button class="btn btn-primary" onclick="location.href='noticeDetail.do?idx=${notice.idx}'">상세보기</button>
-					</p>
-				</div>
-			</c:if>
-			</c:forEach>
-			
-			</div>
 
-		</div>
-	</div>
-
-
-	<div class="untree_co-section">
-		<div class="container">
-			<div class="row justify-content-between align-items-center">
-				
-				<div class="col-lg-6">
-					<figure class="img-play-video">
-						<a id="play-video" class="video-play-button" href="https://www.youtube.com/watch?v=mwtbEGNABWU" data-fancybox>
-							<span></span>
-						</a>
-						<img src="images/hero-slider-2.jpg" alt="Image" class="img-fluid rounded-20">
-					</figure>
-				</div>
-
-				<div class="col-lg-5">
-					<h2 class="section-title text-left mb-4">Take a look at Tour Video</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-
-					<p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-					<ul class="list-unstyled two-col clearfix">
-						<li>Outdoor recreation activities</li>
-						<li>Airlines</li>
-						<li>Car Rentals</li>
-						<li>Cruise Lines</li>
-						<li>Hotels</li>
-						<li>Railways</li>
-						<li>Travel Insurance</li>
-						<li>Package Tours</li>
-						<li>Insurance</li>
-						<li>Guide Books</li>
-					</ul>
-
-					<p><a href="#" class="btn btn-primary">Get Started</a></p>
-
-					
-				</div>
-			</div>
-		</div>
-	</div>
 
 	
 	<!-- footer -->
-	<div class="py-5 cta-section">
-		<div class="container">
-			<div class="row text-center">
-				<div class="col-md-12">
-					<h2 class="mb-2 text-white">Lets you Explore the Best. Contact Us Now</h2>
-					<p class="mb-4 lead text-white text-white-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, fugit?</p>
-					<p class="mb-0"><a href="booking.html" class="btn btn-outline-white text-white btn-md font-weight-bold">Get in touch</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="site-footer">
 		<div class="inner first">

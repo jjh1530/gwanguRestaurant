@@ -45,11 +45,18 @@
 						<ul class="dropdown">
 							<c:if test="${userSession == null }">
 							<li><a href="/userRegisterForm.do">회원가입</a></li>
+							
+							</c:if>
+							<c:if test="${kakaoEmail == null}">
+								<li><a href="/kakaoLoginForm.do">카카오 로그인</a></li>
 							</c:if>
 							<c:if test="${userSession != null }">
 							<li><a href="/userLogout.do">로그아웃</a></li>
 							<li><a href="/userDetailForm.do">회원정보수정</a></li>
 							</c:if>
+							<c:if test="${kakaoEmail ne null}">
+		                    	<li><a href="/kakaoLogout.do">카카오 로그아웃</a></li>
+		                    </c:if>
 						</ul>
 					</li>
 				</ul>

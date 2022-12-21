@@ -70,8 +70,13 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value="/kakaoLogin")
-	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) {
+	@RequestMapping(value="/kakaoLoginForm.do")
+	public String kakaoLoginForm() {
+		return "kakaoLoginForm";
+	}
+	
+	@RequestMapping(value="/kakaoLogin.do")
+	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) throws Exception{
 	    String access_Token = kakaoService.getAccessToken(code);
         
         HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
@@ -79,11 +84,19 @@ public class UserController {
         
         //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
         if (userInfo.get("email") != null) {
-            session.setAttribute("userId", userInfo.get("email"));
+            session.setAttribute("kakaoEmail", userInfo.get("email"));
             session.setAttribute("access_Token", access_Token);
         }
-        
-	    return "main";
+        System.out.println(userInfo.get("email")+"@@@@@@@@@@");
+	    return "redirect:/main.do";
+	}
+	
+	@RequestMapping(value="/kakaoLogout.do")
+	public String kakaoLogout(HttpSession session) throws Exception{
+		kakaoService.kakaoLogout((String)session.getAttribute("access_Token"));
+	    session.removeAttribute("access_Token");
+	    session.removeAttribute("kakaoEmail");
+	    return "redirect:/main.do";
 	}
 	
 	 
