@@ -1,12 +1,7 @@
 package egovframework.example.controller;
 
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -15,9 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.json.simple.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import egovframework.example.service.KaKaoService;
 import egovframework.example.service.UserService;
@@ -38,13 +29,14 @@ import egovframework.example.vo.UserVO;
 @Controller
 public class UserController {
 	
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	UserService userService;
 	
 	@Autowired
 	KaKaoService kakaoService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bPasswordEncoder;
 	
 	@RequestMapping(value="userLogin.do")
 	@ResponseBody
@@ -52,21 +44,21 @@ public class UserController {
 			, HttpServletRequest request) throws Exception {
 		
 		String message = "";
-		int count = userService.userLogin(vo);
-		String userid = vo.getUserid();
+		String ipass = request.getParameter("userpass");// 입력 비밀번호
 		
-		if (count == 1) {
-			UserVO uvo = userService.user(vo);
+		UserVO uvo = userService.user(vo);
+		
+		String userid = vo.getUserid();
+		System.out.println(bPasswordEncoder.encode(ipass));
+		if (uvo !=null && bPasswordEncoder.matches(ipass,uvo.getUserpass())) {
 			session.setAttribute("userSession", uvo);
 			session.setAttribute("sessionUserid", userid);
 			session.setMaxInactiveInterval(1800);
 			
 			message = "ok";
 		}
-		if(logger.isInfoEnabled()) {
-            logger.info("회원가입 아이디 = " + vo.getUserid() + ".");
-        }
-		return message;
+		
+		return message; 
 		
 	}
 	
@@ -131,6 +123,8 @@ public class UserController {
 	@ResponseBody
 	public String userRegister(UserVO vo) throws Exception {
 		String message = "";
+		String pwEncoder = bPasswordEncoder.encode(vo.getUserpass());
+		vo.setUserpass(pwEncoder);
 		int result = userService.register(vo);
 		if (result == 1) {
 			message ="ok";

@@ -9,7 +9,7 @@
 	
 	<select id="user" resultType="userVO">
 		select * from donguUser
-		WHERE BINARY(userid) = #{userid} AND BINARY(userpass) = #{userpass} 
+		WHERE BINARY(userid) = #{userid}
 	</select>
 	
 	<insert id="register" parameterType="userVO">

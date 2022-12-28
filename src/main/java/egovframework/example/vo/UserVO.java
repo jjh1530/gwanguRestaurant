@@ -76,6 +76,12 @@ public class UserVO {
 	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
+	@Override
+	public String toString() {
+		return "UserVO [userid=" + userid + ", userpass=" + userpass + ", username=" + username + ", userage=" + userage
+				+ ", useremail=" + useremail + ", useryn=" + useryn + ", registerDate=" + registerDate + ", filename="
+				+ filename + ", userPhone=" + userPhone + ", uploadFile=" + uploadFile + "]";
+	}
 	
 
 }

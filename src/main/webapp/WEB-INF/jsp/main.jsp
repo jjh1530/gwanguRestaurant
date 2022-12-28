@@ -254,7 +254,8 @@ $(function() {
     			if(result == "ok") {
     				alert(userid + "님 로그인 되었습니다.");
     				location = "main.do";
-    			} else {
+    			} 
+    			if(result !="ok"){
     				alert("아이디 또는 패스워드를 확인해주세요.");
     			}
     		},
