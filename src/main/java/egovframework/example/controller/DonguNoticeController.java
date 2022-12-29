@@ -73,13 +73,15 @@ public class DonguNoticeController {
 		int num = vo.getIdx();
 		
 		if (sessionUserid == null) {
-			sessionUserid = "없음";
+			sessionUserid = "비회원";
 		}
-		if (!sessionUserid.equals(writer) || sessionUserid != null) {
-			donguNoticeService.noticeCount(num);
+		if ( !sessionUserid.equals("비회원")) {
+			if (!sessionUserid.equals(writer)) {
+				donguNoticeService.noticeCount(num);
+			}
 		}
+			
 		
-		System.out.println(writer + "ww" + sessionUserid + "logi" + num);
 		return "noticeDetail";
 	}
 	

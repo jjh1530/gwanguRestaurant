@@ -2,7 +2,6 @@ package egovframework.example.dao.impl;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;

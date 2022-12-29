@@ -2,7 +2,6 @@ package egovframework.example.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 
 import egovframework.example.vo.DonguNoticeVO;
 import egovframework.example.vo.DonguVO;
