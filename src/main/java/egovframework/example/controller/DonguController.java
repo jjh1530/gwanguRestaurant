@@ -35,6 +35,12 @@ public class DonguController {
 		
 		List<DonguNoticeVO> notice = donguService.getNotice();
 		model.addAttribute("notice", notice);
+		String kakaoEmail = request.getParameter("kakaoEmail");
+		String kakaoName = request.getParameter("kakaoName");
+		String gender = request.getParameter("gender");
+		model.addAttribute("kakaoEmail", kakaoEmail);
+		model.addAttribute("kakaoName", kakaoName);
+		model.addAttribute("gender", gender);
 		return "main";
 	}
 	

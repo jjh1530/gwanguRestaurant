@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,12 +64,15 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/kakaoLoginForm.do")
-	public String kakaoLoginForm() {
+	public String kakaoLoginForm(Model model, HttpServletRequest request) {
+		
 		return "kakaoLoginForm";
 	}
 	
 	@RequestMapping(value="/kakaoLogin.do")
-	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) throws Exception{
+	public String kakaoLogin(@RequestParam("code") String code, HttpSession session
+						,Model model,UserVO vo) throws Exception{
+		
 	    String access_Token = kakaoService.getAccessToken(code);
         
         HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
@@ -79,8 +83,30 @@ public class UserController {
             session.setAttribute("kakaoEmail", userInfo.get("email"));
             session.setAttribute("access_Token", access_Token);
         }
-        System.out.println(userInfo.get("email")+"@@@@@@@@@@");
-	    return "redirect:/main.do";
+	    //return "redirect:/main.do";
+        String gender = "";
+		if (userInfo.get("gender").equals("male")) {
+			gender = "남";
+		}else {
+			gender = "여";
+		}
+        model.addAttribute("kakaoEmail",  userInfo.get("email"));
+		model.addAttribute("kakaoName",  userInfo.get("nickname"));
+		model.addAttribute("gender", gender);
+		
+		vo.setUserid((String) userInfo.get("email"));
+		UserVO uvo = userService.user(vo);
+		if (uvo != null) {
+			return "redirect:/main.do";
+		}else {
+			return "kakaoRegisterForm";
+		}
+	}
+	
+	@RequestMapping(value="/kakaoRegisterForm.do")
+	public String kakaoRegisterForm() {
+		
+		return "redirect:/main.do";
 	}
 	
 	@RequestMapping(value="/kakaoLogout.do")
@@ -130,6 +156,19 @@ public class UserController {
 			message ="ok";
 		}
 		System.out.println(message);
+		return message;
+	}
+	
+	@RequestMapping(value="kakaoRegister.do")
+	@ResponseBody
+	public String kakaoRegister(UserVO vo) throws Exception {
+		String message ="";
+		String pwEncoder = bPasswordEncoder.encode(vo.getUserpass());
+		vo.setUserpass(pwEncoder);
+		int result = userService.register(vo);
+		if (result == 1) {
+			message ="ok";
+		}
 		return message;
 	}
 	

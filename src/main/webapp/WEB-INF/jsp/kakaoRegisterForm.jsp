@@ -50,27 +50,36 @@
 			<div class="row align-items-center">
 				<div class="col-lg-7">
 					<div class="intro-wrap">
-						<h1 class="mb-5"><span class="d-block">Let's Enjoy Your </span> Taste In Gwangju </h1> 
+						<h1 class="mb-5"><span class="d-block">KaKaoLogin</span> Test </h1> 
+						<div id="passMessage" style="color:white; text-align:left;"></div>
 					</div>
-					<c:if test="${userSession==null }">
 					<form id="sign-form">
 		                <ul>
-		                    <li>
+		                 <li>
 			                    <input type="text" class="form-control" name="userid" id="userid" style="width:65%"
 			                    placeholder="아이디를 입력하세요." onkeyup="javascript:onEnterLogin();" value="${kakaoEmail }" required/>
 		                    </li><p>
-		                    <li>
-		                        <input type="password" class="form-control" name="userpass" id="userpass" style="width:65%" onkeyup="javascript:onEnterLogin();" required placeholder="비밀번호를 입력하세요."/>
+		                     <li>
+			                    <input type="text" class="form-control" name="username" id="username" style="width:65%"
+			                    placeholder="이름을 입력하세요." onkeyup="javascript:onEnterLogin();" value="${kakaoName }" required/>
 		                    </li><p>
+			                    <input type="hidden" class="form-control" name="useryn" id="useryn" style="width:65%"
+			                    placeholder="성별을 입력하세요." onkeyup="javascript:onEnterLogin();" value="카카오" required/>
+		                    <li>
+		                        <input type="password" class="form-control" name="userpass1" id="userpass1" onkeyup="passwordCheck();" style="width:65%" onkeyup="javascript:onEnterLogin();" required placeholder="비밀번호를 입력하세요."/>
+		                    </li><p>
+		                    <li>
+		                        <input type="password" class="form-control" name="userpass2" id="userpass2" onkeyup="passwordCheck();" style="width:65%" onkeyup="javascript:onEnterLogin();" required placeholder="비밀번호를 입력하세요."/>
+		                    </li><p>
+		                  
+		                       
+		                  
 		                    <li>
 		                        <button type="button" id="btn_submit" name="btn_submit"  style="width:65%;" class="btn btn-success">로그인</button>
 		                    </li>
+		                   
 		                </ul>
            			</form>
-           			</c:if>
-           			<c:if test="${userSession!=null }">
-           			<h1 class="mb-5">Hello ${userSession.userid }</h1>
-           			</c:if>
 				</div>
 				
 				
@@ -84,84 +93,11 @@
 		</div>
 	</div>
 	
-	<div class="untree_co-section" style="background: rgba(26, 55, 77, 0.05);">
-		<div class="container">
-			<div class="row text-center justify-content-center mb-5">
-				<div class="col-lg-7"><h2 class="section-title text-center">공지사항</h2></div>
-			</div>
-			<div class="owl-carousel owl-4-slider">
-			
- 			 <c:forEach var="notice" items="${notice }" varStatus="Loop">
- 			 <c:if test="${notice.noticeimg != null }">
-				<div class="item">
-					<img src="<c:out value='file_repo/${notice.noticeimg}'/>" alt="Image" style="height:300px; padding:10px;">
-					<p><p>
-					<button class="btn btn-primary" onclick="location.href='noticeDetail.do?idx=${notice.idx}'">상세보기</button>
-					</p>
-				</div>
-			</c:if>
-			</c:forEach>
-			
-			</div>
 
-		</div>
-	</div>
-
-
-	<div class="untree_co-section">
-		<div class="container">
-			<div class="row justify-content-between align-items-center">
-				
-				<div class="col-lg-6">
-					<figure class="img-play-video">
-						<a id="play-video" class="video-play-button" href="https://www.youtube.com/watch?v=mwtbEGNABWU" data-fancybox>
-							<span></span>
-						</a>
-						<img src="images/hero-slider-2.jpg" alt="Image" class="img-fluid rounded-20">
-					</figure>
-				</div>
-
-				<div class="col-lg-5">
-					<h2 class="section-title text-left mb-4">Take a look at Tour Video</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-
-					<p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-					<ul class="list-unstyled two-col clearfix">
-						<li>Outdoor recreation activities</li>
-						<li>Airlines</li>
-						<li>Car Rentals</li>
-						<li>Cruise Lines</li>
-						<li>Hotels</li>
-						<li>Railways</li>
-						<li>Travel Insurance</li>
-						<li>Package Tours</li>
-						<li>Insurance</li>
-						<li>Guide Books</li>
-					</ul>
-
-					<p><a href="#" class="btn btn-primary">Get Started</a></p>
-
-					
-				</div>
-			</div>
-		</div>
-	</div>
 
 	
-	<!-- footer -->
-	<div class="py-5 cta-section">
-		<div class="container">
-			<div class="row text-center">
-				<div class="col-md-12">
-					<h2 class="mb-2 text-white">Lets you Explore the Best. Contact Us Now</h2>
-					<p class="mb-4 lead text-white text-white-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, fugit?</p>
-					<p class="mb-0"><a href="booking.html" class="btn btn-outline-white text-white btn-md font-weight-bold">Get in touch</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	<!-- footer 
+-->
 	<div class="site-footer">
 		<div class="inner first">
 			<div class="container">
@@ -223,11 +159,25 @@
 	<script src="js/custom.js"></script>
 	
 <script>
+
+function passwordCheck() {
+	var userpass1 = $("#userpass1").val();
+	var userpass2 = $("#userpass2").val();
+	if (userpass1 != userpass2) {
+		$("#passMessage").html("비밀번호가 일치하지 않습니다.");
+	}else {
+		$("#passMessage").html("");
+	}		
+}
+
 $(function() {
 	
 	$("#btn_submit").click(function(){
 		var userid = $.trim($("#userid").val());
-		var userpass = $.trim($("#userpass").val());
+		var userpass = $.trim($("#userpass1").val());
+		var userpass2 =  $.trim($("#userpass2").val());
+		
+		var username = $("#username").val();
 		
 		if(userid == "") {
 			alert("아이디를 입력해주세요.");	
@@ -240,21 +190,33 @@ $(function() {
 			$("#userpass").focuse();
 			return false;
 		}
-		
+		if(userid == "") {
+			alert("아이디를 입력해주세요." + userPhone);	
+			$("#userid").focuse();
+			return false;
+		}
+		if(userpass == "") {
+			alert("암호를 입력해주세요.");	
+			$("#userpass1").focuse();
+			return false;
+		}
+		if(userpass != userpass2) {
+			alert("비밀번호가 다릅니다.")	
+			return false;
+		}
 		$.ajax({
 			/* 전송 전 세팅 */
     		type:"POST",
-    		data: "userid="+userid+ "&userpass=" + userpass,
-    		url:"userLogin.do", //데이터를 보내는 곳
+    		data: "userid="+userid+ "&userpass=" + userpass+ "&username=" + username + "&useryn=" + useryn,
+    		url:"kakaoRegister.do", //데이터를 보내는 곳
     		dataType:"text",     // 리턴 타입
     		
     		/* 전송 후 세팅  */
     		success: function(result) {
     			if(result == "ok") {
-    				alert(userid + "님 로그인 되었습니다.");
+    				alert(username + "님 회원가입 되었습니다.");
     				location = "main.do";
-    			} 
-    			if(result !="ok"){
+    			} else {
     				alert("아이디 또는 패스워드를 확인해주세요.");
     			}
     		},
