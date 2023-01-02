@@ -135,6 +135,11 @@ public class DonguController {
         wb.write(response.getOutputStream());
         wb.close();
     }
-
+	
+	@RequestMapping(value="bookSearchForm.do")
+	public String bookSearchForm() {
+		
+		return "bookSearchForm";
+	}
 	
 }

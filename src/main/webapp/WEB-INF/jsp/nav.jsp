@@ -40,6 +40,7 @@
 					<li><a href="/list.do">식당 리스트</a></li>
 					<li><a href="/notice.do">공지사항</a></li>
 					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="/bookSearchForm.do">책검색</a></li>
 					<li class="has-children">
 						<a href="#">회원관리</a>
 						<ul class="dropdown">
@@ -53,6 +54,7 @@
 							<c:if test="${userSession != null }">
 							<li><a href="/userLogout.do">로그아웃</a></li>
 							<li><a href="/userDetailForm.do">회원정보수정</a></li>
+							
 							</c:if>
 						</ul>
 					</li>
