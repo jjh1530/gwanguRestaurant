@@ -167,6 +167,7 @@
   	 bList+="<thead>";
   	 bList+="<tr>";
   	 bList+="<th>책이미지</th>";
+  	 bList+="<th>책이름</th>";
   	 bList+="<th>책가격</th>";
   	 bList+="</tr>";
   	 bList+="</thead>";
@@ -174,9 +175,11 @@
   	 $.each(data.documents,function(index, obj){
   		 var image=obj.thumbnail;
   		 var price=obj.price;
+  		 var title = obj.title;
   		 var url=obj.url;
   		 bList+="<tr>";
       	 bList+="<td><a href='"+url+"'><img src='"+image+"' width='50px' height='60px'/></a></td>";
+      	 bList+="<td>"+title+"</td>";
       	 bList+="<td>"+price+"</td>";
       	 bList+="</tr>";
   	 }); 
