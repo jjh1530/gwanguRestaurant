@@ -157,11 +157,6 @@
 		 minLength : 1
 	 });
  });
- 
- function bookPrint2(data) {
-	 alert(data);
- }
- 
  function bookPrint(data){
   	 var bList="<table class='table table-hover'>";
   	 bList+="<thead>";
